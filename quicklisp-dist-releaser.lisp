@@ -44,9 +44,9 @@
   (map nil 'ql-dist:ensure-installed
        (ql-dist:provided-releases (ql-dist:dist "quicklisp"))))
 
-(defun release ()
+(defun release (&key skip)
   (install-latest-everything)
   (update-site)
   (with-posix-cwd *projects-directory*
     (git "pull"))
-  (update-report:dist-update-report "quicklisp"))
+  (update-report:dist-update-report "quicklisp" :skip skip))
